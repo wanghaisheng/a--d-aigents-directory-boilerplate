@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Moon, Sun, Search, X } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   onSearch: (term: string) => void;
@@ -55,15 +56,16 @@ export function Header({ onSearch }: HeaderProps) {
             </div>
           </div>
 
-          {/* Mobile Search Button */}
-          <button
-            onClick={() => setIsSearchOpen(!isSearchOpen)}
-            className="md:hidden p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
-          >
-            <Search className="w-5 h-5" />
-          </button>
+          {/* Right Side Actions */}
+          <div className="flex items-center gap-2">
+            {/* Mobile Search Button */}
+            <button
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="md:hidden p-2 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            >
+              <Search className="w-5 h-5" />
+            </button>
 
-          <div className="flex items-center gap-2 md:gap-4">
             {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
@@ -73,10 +75,13 @@ export function Header({ onSearch }: HeaderProps) {
             </button>
 
             {/* Submit Button */}
-            <button className="px-4 py-2 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors">
+            <Link
+              to="/submit"
+              className="px-4 py-2 text-sm font-medium text-white bg-black dark:bg-white dark:text-black rounded-full hover:bg-gray-800 dark:hover:bg-gray-200 transition-colors"
+            >
               <span className="hidden md:inline">+ Submit Agent</span>
               <span className="md:hidden">Submit</span>
-            </button>
+            </Link>
           </div>
         </div>
 
