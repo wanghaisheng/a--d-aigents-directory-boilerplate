@@ -23,15 +23,18 @@ export function HomePage() {
       <main className="max-w-7xl mx-auto py-8">
         <div className="text-center px-4 sm:px-6 lg:px-8">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white">
-            Discover Amazing AI Agents
+            Discover Amazing{' '}
+            <span className="inline-block bg-blue-600 text-white dark:bg-blue-500 dark:text-white px-2 py-1 rounded transform rotate-2">
+              AI Agents
+            </span>
           </h1>
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
             Explore our curated collection of AI agents and tools to enhance your workflow.
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex gap-2 overflow-x-auto py-4 px-4 sm:px-6 lg:px-8">
+        {/* Category Filter - Changed to wrap on mobile */}
+        <div className="flex flex-wrap gap-2 py-4 px-4 sm:px-6 lg:px-8">
           {categories.map((category) => (
             <button
               key={category}

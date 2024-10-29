@@ -1,5 +1,5 @@
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Github, Twitter, Calendar } from 'lucide-react';
+import { ArrowLeft, Globe, Github, Twitter, Calendar } from 'lucide-react';
 import { agents } from '../data/agents';
 import { Header } from '../components/Header';
 
@@ -32,11 +32,11 @@ export function AgentDetailPage() {
           Back to directory
         </Link>
 
-        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-8">
-          <div className="flex items-start justify-between mb-6">
-            <div className="flex items-center gap-6">
+        <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 p-4 sm:p-8">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-4 mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
               {typeof agent.logo === 'string' ? (
-                <div className="w-20 h-20 rounded-lg overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-gray-700">
+                <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg overflow-hidden flex items-center justify-center bg-gray-100 dark:bg-gray-700">
                   <img
                     src={agent.logo}
                     alt={`${agent.name} logo`}
@@ -45,14 +45,14 @@ export function AgentDetailPage() {
                 </div>
               ) : (
                 <div
-                  className="w-20 h-20 rounded-lg flex items-center justify-center text-2xl font-bold text-white"
+                  className="w-16 h-16 sm:w-20 sm:h-20 rounded-lg flex items-center justify-center text-2xl font-bold text-white"
                   style={{ backgroundColor: agent.logo?.color || '#4B5563' }}
                 >
                   {agent.logo?.initials || agent.name.slice(0, 2).toUpperCase()}
                 </div>
               )}
               <div>
-                <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">{agent.name}</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">{agent.name}</h1>
                 <div className="flex flex-wrap gap-2">
                   {agent.category.map((cat) => (
                     <span
@@ -66,16 +66,16 @@ export function AgentDetailPage() {
               </div>
             </div>
             
-            <div className="flex gap-4">
+            <div className="flex gap-2 sm:gap-4 w-full sm:w-auto">
               {agent.website && (
                 <a
                   href={agent.website}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 text-gray-700 dark:text-gray-300 transition-colors"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 text-gray-700 dark:text-gray-300 transition-colors"
                 >
-                  <ExternalLink className="h-4 w-4" />
-                  Visit Website
+                  <Globe className="h-4 w-4" />
+                  <span>Website</span>
                 </a>
               )}
               {agent.github && (
@@ -83,16 +83,16 @@ export function AgentDetailPage() {
                   href={agent.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 text-gray-700 dark:text-gray-300 transition-colors"
+                  className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-4 py-2 rounded-lg border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 text-gray-700 dark:text-gray-300 transition-colors"
                 >
                   <Github className="h-4 w-4" />
-                  View Source
+                  <span>Source</span>
                 </a>
               )}
             </div>
           </div>
 
-          <p className="text-gray-600 dark:text-gray-400 mb-8">{agent.description}</p>
+          <p className="text-gray-600 dark:text-gray-400 mb-8 text-sm sm:text-base">{agent.description}</p>
 
           <div className="flex flex-wrap gap-4 mb-8">
             {agent.twitter && (
@@ -108,13 +108,15 @@ export function AgentDetailPage() {
             )}
           </div>
 
-          <div className="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400">
+          <div className="flex items-center gap-4 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
             <div className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
               Last updated: {new Date(agent.lastUpdated).toLocaleDateString()}
             </div>
             <span>•</span>
-            <div>{agent.isOpenSource ? 'Open Source' : 'Closed Source'}</div>
+            <div className={`${agent.isOpenSource ? 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-0.5 rounded-full' : ''}`}>
+              {agent.isOpenSource ? 'Open Source' : 'Closed Source'}
+            </div>
           </div>
         </div>
       </div>
