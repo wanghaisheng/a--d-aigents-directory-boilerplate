@@ -1,19 +1,16 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { HomePage } from './pages/HomePage';
 import { AgentDetailPage } from './pages/AgentDetailPage';
-import { SubmitPage } from './pages/SubmitPage';
 
-function App() {
+export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/agent/:id" element={<AgentDetailPage />} />
-        <Route path="/submit" element={<SubmitPage />} />
-      </Routes>
-    </BrowserRouter>
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/agent/:id" element={<AgentDetailPage />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-export default App;
