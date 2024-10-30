@@ -3,6 +3,7 @@ import { HomePage } from './pages/HomePage';
 import { AgentDetailPage } from './pages/AgentDetailPage';
 import { SubmitPage } from './pages/SubmitPage';
 import { Footer } from './components/Footer';
+import { Analytics } from '@vercel/analytics/react';
 
 export default function App() {
   return (
@@ -14,6 +15,7 @@ export default function App() {
           <Route path="/submit" element={<SubmitPage />} />
         </Routes>
         <Footer />
+        <Analytics />
       </div>
     </Router>
   );
